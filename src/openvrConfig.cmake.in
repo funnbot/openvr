@@ -1,0 +1,6 @@
+set(openvr_VERSION 1.16.8)
+
+@PACKAGE_INIT@
+
+include("${PACKAGE_PREFIX_DIR}/openvrTarget.cmake")
+check_required_components("openvr")
