@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdarg.h>
 #include <sstream>
 #include <codecvt>
 #include <iostream>
@@ -304,11 +305,11 @@ static bool CharNeedsEscape_FullPath( const char c )
 // Purpose: Internal implementation of encode, works in the strict RFC manner, or
 //          with spaces turned to + like HTML form encoding.
 //-----------------------------------------------------------------------------
-void V_URLEncodeInternal( char *pchDest, int nDestLen, const char *pchSource, int nSourceLen, 
+void V_URLEncodeInternal( char *pchDest, int nDestLen, const char *pchSource, int nSourceLen,
 	bool bUsePlusForSpace, std::function< bool(const char)> fnNeedsEscape )
 {
 	//AssertMsg( nDestLen > 3*nSourceLen, "Target buffer for V_URLEncode should be 3x source length, plus one for terminating null\n" );
-	
+
 	int iDestPos = 0;
 	for ( int i=0; i < nSourceLen; ++i )
 	{
@@ -443,7 +444,7 @@ size_t V_URLDecodeInternal( char *pchDecodeDest, int nDecodeDestLen, const char 
 }
 
 //-----------------------------------------------------------------------------
-// Purpose: Encodes a string (or binary data) from URL encoding format, see rfc1738 section 2.2.  
+// Purpose: Encodes a string (or binary data) from URL encoding format, see rfc1738 section 2.2.
 //          This version of the call isn't a strict RFC implementation, but uses + for space as is
 //          the standard in HTML form encoding, despite it not being part of the RFC.
 //
@@ -466,7 +467,7 @@ void V_URLEncodeFullPath( char *pchDest, int nDestLen, const char *pchSource, in
 }
 
 //-----------------------------------------------------------------------------
-// Purpose: Decodes a string (or binary data) from URL encoding format, see rfc1738 section 2.2.  
+// Purpose: Decodes a string (or binary data) from URL encoding format, see rfc1738 section 2.2.
 //          This version of the call isn't a strict RFC implementation, but uses + for space as is
 //          the standard in HTML form encoding, despite it not being part of the RFC.
 //
@@ -486,7 +487,7 @@ size_t V_URLDecodeNoPlusForSpace( char *pchDecodeDest, int nDecodeDestLen, const
 //-----------------------------------------------------------------------------
 void V_StripExtension( std::string &in )
 {
-	// Find the last dot. If it's followed by a dot or a slash, then it's part of a 
+	// Find the last dot. If it's followed by a dot or a slash, then it's part of a
 	// directory specifier like ../../somedir/./blah.
 	std::string::size_type test = in.rfind( '.' );
 	if ( test != std::string::npos )
