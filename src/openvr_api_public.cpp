@@ -5,7 +5,7 @@
 #include <vrcommon/pathtools_public.h>
 #include <vrcommon/sharedlibtools_public.h>
 #include <vrcommon/envvartools_public.h>
-#include "hmderrors_public.h"
+#include <vrcommon/hmderrors_public.h>
 #include <vrcommon/strtools_public.h>
 #include <vrcommon/vrpathregistry_public.h>
 #include <mutex>
@@ -260,26 +260,26 @@ bool VR_IsRuntimeInstalled()
 // -------------------------------------------------------------------------------
 // Purpose: This is the old Runtime Path interface that is no longer exported in the
 //			latest header. We still want to export it from the DLL, though, so updating
-//			to a new DLL doesn't break old compiled code. This version was not thread 
-//			safe and could change the buffer pointer to by a previous result on a 
+//			to a new DLL doesn't break old compiled code. This version was not thread
+//			safe and could change the buffer pointer to by a previous result on a
 //			subsequent call
 // -------------------------------------------------------------------------------
-VR_EXPORT_INTERFACE const char *VR_CALLTYPE VR_RuntimePath();
+// VR_EXPORT_INTERFACE const char *VR_CALLTYPE VR_RuntimePath();
 
 /** Returns where OpenVR runtime is installed. */
-const char *VR_RuntimePath()
-{
-	static char rchBuffer[1024];
-	uint32_t unRequiredSize;
-	if ( VR_GetRuntimePath( rchBuffer, sizeof( rchBuffer ), &unRequiredSize ) && unRequiredSize < sizeof( rchBuffer ) )
-	{
-		return rchBuffer;
-	}
-	else
-	{
-		return nullptr;
-	}
-}
+// const char *VR_RuntimePath()
+// {
+// 	static char rchBuffer[1024];
+// 	uint32_t unRequiredSize;
+// 	if ( VR_GetRuntimePath( rchBuffer, sizeof( rchBuffer ), &unRequiredSize ) && unRequiredSize < sizeof( rchBuffer ) )
+// 	{
+// 		return rchBuffer;
+// 	}
+// 	else
+// 	{
+// 		return nullptr;
+// 	}
+// }
 
 
 /** Returns where OpenVR runtime is installed. */

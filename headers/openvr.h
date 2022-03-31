@@ -2010,7 +2010,7 @@ struct ImuSample_t
     #ifdef VR_API_EXPORT
       #define VR_INTERFACE extern "C" __declspec( dllexport )
     #else
-      #define VR_INTERFACE extern "C" __declspec( dllimport )
+      #define VR_INTERFACE
     #endif
   #else
     #define VR_INTERFACE extern "C"
@@ -5231,7 +5231,7 @@ namespace vr
 
 	/** Returns where the OpenVR runtime is installed. */
 	VR_INTERFACE bool VR_GetRuntimePath( VR_OUT_STRING() char *pchPathBuffer, uint32_t unBufferSize, uint32_t *punRequiredBufferSize );
-	
+
 	/** Returns the name of the enum value for an EVRInitError. This function may be called outside of VR_Init()/VR_Shutdown(). */
 	VR_INTERFACE const char *VR_CALLTYPE VR_GetVRInitErrorAsSymbol( EVRInitError error );
 
@@ -5507,7 +5507,7 @@ namespace vr
 			}
 			return m_pVRNotifications;
 		}
-		
+
 	private:
 		IVRSystem			*m_pVRSystem;
 		IVRChaperone		*m_pVRChaperone;
@@ -5581,7 +5581,7 @@ namespace vr
 		m_pVRNotifications = nullptr;
 		m_pVRDebug = nullptr;
 	}
-	
+
 	VR_INTERFACE uint32_t VR_CALLTYPE VR_InitInternal2( EVRInitError *peError, EVRApplicationType eApplicationType, const char *pStartupInfo );
 	VR_INTERFACE void VR_CALLTYPE VR_ShutdownInternal();
 

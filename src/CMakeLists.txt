@@ -68,7 +68,7 @@ source_group("VRCommon" FILES
 if(BUILD_SHARED)
 	add_library(${LIBNAME} SHARED ${SOURCE_FILES})
 elseif(BUILD_FRAMEWORK)
-	add_library( ${LIBNAME} 
+	add_library( ${LIBNAME}
             SHARED ${SOURCE_FILES}
             ${CMAKE_SOURCE_DIR}/headers/openvr.h
             ${CMAKE_SOURCE_DIR}/headers/openvr_api.cs
@@ -97,7 +97,7 @@ if(USE_CUSTOM_LIBCXX)
 endif()
 
 target_link_libraries(${LIBNAME} ${EXTRA_LIBS} ${CMAKE_DL_LIBS})
-target_include_directories(${LIBNAME} PUBLIC 
+target_include_directories(${LIBNAME} PUBLIC
 	"$<BUILD_INTERFACE:${OPENVR_HEADER_DIR}>"
 	"$<INSTALL_INTERFACE:include/openvr>")
 
