@@ -90,6 +90,7 @@ elseif(BUILD_FRAMEWORK)
 	)
 else()
 	add_library(${LIBNAME} STATIC ${SOURCE_FILES})
+	target_compile_definitions(${LIBNAME} PUBLIC OPENVR_BUILD_STATIC)
 endif()
 
 if(USE_CUSTOM_LIBCXX)
