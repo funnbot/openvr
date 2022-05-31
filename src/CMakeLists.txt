@@ -93,6 +93,8 @@ else()
 	target_compile_definitions(${LIBNAME} PUBLIC OPENVR_BUILD_STATIC)
 endif()
 
+set_target_properties(${LIBNAME} PROPERTIES DEBUG_POSTFIX "d")
+
 if(USE_CUSTOM_LIBCXX)
 	set(EXTRA_LIBS ${EXTRA_LIBS} c++ c++abi)
 endif()
